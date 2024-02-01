@@ -47,3 +47,4 @@ Bonus
 - [ ]  environnement cloud workflow de github CI( testé ; publication)
 - [ ] variabilisé l'environnement (..)
 - [ ]  swagger-ui-express 
+- [ ]  rajouter des test dasn la CI 
