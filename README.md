@@ -5,7 +5,7 @@ le but est de mettre en pratique sur une API qui repond "helloworld"
 les mises pratiques de Ci/CD
 
 ## guide du développeur
-** prerequis **
+**prerequis**
 installer node.js v18 ou plus
 ```shell
 git clone https://github.com/123Nell123/AM_devops.git
@@ -15,7 +15,7 @@ npm run start
 ```
 ## guide de deployement 
 
-** prerequis **
+**prerequis**
 construire l'image docker
 ```shell
 cd AM_devops/backdemoAM
