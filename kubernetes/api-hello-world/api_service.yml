@@ -1,0 +1,18 @@
+## kubectl apply -f kubernetes/api-hello-world/api_service.yml 
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: hello-world-api
+  name: service-hello-world-api
+spec:
+  ports:
+    - port: 8080
+      targetPort: 3000 
+  selector:
+    app: hello-world-api
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - hostname: localhost

@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "e837f27a-70cd-48d5-ba2b-de7e2068fe5d",
+		"name": "AvatarM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25778994"
+	},
+	"item": [
+		{
+			"name": "health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/health",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "health Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/health",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "sabotage",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/sabotage",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"sabotage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "hello_world",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

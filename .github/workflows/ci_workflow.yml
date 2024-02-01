@@ -1,0 +1,85 @@
+name: ci_workflow
+run-name: ci_workflow for ${{ github.actor }} 
+on: 
+  # push:
+  #   branches:
+  #     - master
+  workflow_dispatch:
+
+jobs:
+  run-build:
+    name: build_image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Display runner information
+        run: |
+          echo "SECRET_token = ${{ secrets.GITHUB_TOKEN }}"
+          echo "SECRET = ${{ secrets.TEST_SECRET }}"
+          echo "CI = ${CI}"
+          echo "GITHUB_ACTION = ${GITHUB_ACTION}"
+          echo "GITHUB_ACTIONS = ${GITHUB_ACTIONS}"
+          echo "GITHUB_ACTOR = ${GITHUB_ACTOR}"
+          echo "USER = ${USER}"
+          echo "env.REGISTRY = ${{ env.REGISTRY }}"
+          echo "GITHUB_EVENT_NAME = ${GITHUB_EVENT_NAME}"
+
+          
+
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+  
+      - name: Build Docker image
+        run: |
+          docker build -t api:latest  ./backdemoAM
+      
+      # - name: Save Docker image
+      #   run: |
+      #     docker save -o api.tar api:latest
+      
+      - name: print workind directory
+        run: |
+          pwd
+       
+      - name: test Run Docker container
+        id: run-docker-container
+        run: |
+          docker run -d --name api-container api:latest || exit 1
+        continue-on-error: false
+        shell: bash
+  # TODO continue-on-error : false avant livraison
+
+      - name: Show Docker container logs
+        run: |
+          docker logs api-container
+   
+  # TODO tester le pt d entree racine et s'assurer qu'il renvoi 200
+ 
+
+  push_to_repository:
+    name: build_image
+    runs-on: ubuntu-latest
+    steps: 
+
+
+        - name: Log in to the Container registry
+          uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+          with:
+            registry: ghcr.io
+            username: ${{ github.actor }}
+            password: ${{ secrets.GITHUB_TOKEN }}
+
+        - name: Extract metadata (tags, labels) for Docker
+          id: meta
+          uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7
+          with:
+            images: 123Nell123/api
+
+            # TODO fix erreur sur ce pt
+        # - name: Build and push Docker image
+        #   uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
+        #   with:
+        #     context: .
+        #     push: true
+        #     tags: ${{ steps.meta.outputs.tags }}
+        #     labels: ${{ steps.meta.outputs.labels }}

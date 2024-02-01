@@ -1,0 +1,1 @@
+Une fois les jobs k8s déployer  lancer le lodabalancing tester les points d'entrée "health" en simulant un sabotage

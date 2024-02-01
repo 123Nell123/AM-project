@@ -1,0 +1,32 @@
+# kubectl apply -f kubernetes/api-hello-world/api_deployment.yml 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: hello-world-api
+  name: deployment-hello-world-api
+spec:
+  replicas: 5  #  Heathcheck isAlive?  
+  selector:
+    matchLabels:
+      app: hello-world-api
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hello-world-api
+    spec:
+      containers:
+      - image: api
+        name: api
+        resources: {}
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3000
+        livenessProbe:
+          httpGet:
+             path: /health
+             port: 3000
+status: {}
